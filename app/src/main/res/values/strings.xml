@@ -2,4 +2,8 @@
     <string name="app_name">KabeerTask</string>
     <string name="field_login_message">Field To login</string>
     <string name="welcome_message">Welcome to our hospital</string>
+    <string name="employee_salary_title">Employee Salary</string>
+    <string name="total_salary_title">Total Salary :</string>
+    <string name="allowances_title">Allowances</string>
+    <string name="deductions_title">Deductions</string>
 </resources>

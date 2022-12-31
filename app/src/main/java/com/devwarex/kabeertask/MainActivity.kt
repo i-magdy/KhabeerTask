@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.devwarex.kabeertask.api.ApiClient
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 
@@ -23,6 +24,7 @@ class MainActivity : AppCompatActivity(
                         .apply {
                             putExtra("USER_TOKEN", body.Token ?: "")
                         }
+                    delay(1200)
                     startActivity(i)
                     finish()
                 }
