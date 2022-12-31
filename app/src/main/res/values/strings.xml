@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">KabeerTask</string>
+    <string name="field_login_message">Field To login</string>
+    <string name="welcome_message">Welcome to our hospital</string>
 </resources>
