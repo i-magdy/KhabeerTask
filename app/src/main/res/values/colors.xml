@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="allowance_color">#607D8B</color>
     <color name="deduct_color">#FFC400</color>
+    <color name="color_error">#B00020</color>
 </resources>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">خبير</string>
+    <string name="field_login_message">خطأ في تسجيل الدخول</string>
+    <string name="welcome_message">مرحبا بك في المستشفى</string>
+    <string name="employee_salary_title">راتب الموظف</string>
+    <string name="total_salary_title">اجمالي الراتب :</string>
+    <string name="allowances_title">الاستحقاقات</string>
+    <string name="deductions_title">الاستقطاعات</string>
+    <string name="value_title">القيمه</string>
+    <string name="clause_title">البند</string>
+    <string name="quantity_title">م</string>
+</resources>

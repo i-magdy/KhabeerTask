@@ -4,9 +4,10 @@ import android.annotation.SuppressLint
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.devwarex.kabeertask.api.ApiClient
 import com.devwarex.kabeertask.databinding.ActivityEmployeeBinding
-import com.devwarex.kabeertask.models.AllowenceModel
+import com.devwarex.kabeertask.models.AllowanceModel
 import com.devwarex.kabeertask.models.EmployeeModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -17,12 +18,18 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 
 class EmployeeActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityEmployeeBinding
+    private val salariesAdapter = SalaryAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEmployeeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.salariesRv.apply {
+            adapter = this@EmployeeActivity.salariesAdapter
+            layoutManager = LinearLayoutManager(this@EmployeeActivity)
+        }
         intent.getStringExtra("USER_TOKEN")?.let {
             CoroutineScope(Dispatchers.Unconfined).launch {
                 val response = ApiClient.create().getEmployee("Bearer $it")
@@ -92,6 +99,22 @@ class EmployeeActivity : AppCompatActivity() {
                 getColor(R.color.deduct_color)
             )
         )
+        val salaries = ArrayList<AllowanceModel>()
+        salaries.add(
+            AllowanceModel(
+                EMP_ID = -1,
+                SAL_COMP_CODE = -1,
+                SAL_COMP_TYPE = -1,
+                SAL_VALUE = -1f,
+                COMP_DESC_AR = "",
+                COMP_DESC_EN = "",
+                currency_ar = employee.Payroll.Employee[0].CURRSYMBOL_AR,
+                currency_en = employee.Payroll.Employee[0].CURRSYMBOL_EN
+            )
+        )
+        salaries.addAll(employee.Payroll.Allowences)
+        salaries.addAll(employee.Payroll.Deduction)
+        salariesAdapter.setSalaries(salaries)
     }
 
 
@@ -120,8 +143,8 @@ class EmployeeActivity : AppCompatActivity() {
     }
 
     private fun calculateTotalSalary(
-        allowances: List<AllowenceModel>,
-        deduction: List<AllowenceModel>,
+        allowances: List<AllowanceModel>,
+        deduction: List<AllowanceModel>,
         currencyAr: String,
         currencyEn: String
     ): String{
@@ -139,7 +162,7 @@ class EmployeeActivity : AppCompatActivity() {
     }
 
     private fun calculateSalary(
-        salaries: List<AllowenceModel>
+        salaries: List<AllowanceModel>
     ): Float{
        if(salaries.isEmpty()) return  0.0f
         var s = 0.0f
