@@ -8,7 +8,7 @@ Please Note that you have to Declare variables in local.properties File.
 
 ## And here's what i did
    
-    this task takes 6-7 hours to be done.
+    this task took 6-7 hours to be done.
 
 <img src="Screenshot_20230101-114147.png" height="400" alt="My Task"/>
 
